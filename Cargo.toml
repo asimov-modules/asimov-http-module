@@ -1,0 +1,40 @@
+# See: https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[package]
+name = "asimov-file-module"
+version = "0.0.0"
+authors = ["ASIMOV Protocol <support@asimov.so>"]
+edition = "2024"
+#rust-version = "1.85"
+description = "ASIMOV module for file system access."
+#documentation = ""
+readme = true
+homepage = "https://github.com/asimov-modules"
+repository = "https://github.com/asimov-modules/asimov-file-module"
+license = "Unlicense"
+keywords = ["asimov-modules", "asimov", "ai"]
+categories = [
+    "command-line-utilities",
+    "os",
+    "filesystem",
+    "value-formatting",
+    "text-processing",
+]
+publish = true
+
+[features]
+default = ["all", "std"]
+all = []
+std = []
+unstable = []
+
+[dependencies]
+
+[[bin]]
+name = "asimov-file-fetcher"
+path = "src/main.rs"
+
+[profile.release]
+opt-level = "z"
+strip = true
+lto = "thin"
