@@ -51,9 +51,9 @@ dependencies = [
 
 [[package]]
 name = "asimov-module"
-version = "25.0.0-dev.12"
+version = "25.0.0-dev.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "72711c55ee5f04032124731cf2949b5cf0c86a47ae709ef45b776ba651c01e76"
+checksum = "e7ac8b71da155cde753c1c253d123483dc1a89e1e08400c53b0fc51f40c9a067"
 dependencies = [
  "clientele",
  "dogma",
@@ -180,9 +180,9 @@ checksum = "f46ad14479a25103f283c0f10005961cf086d8dc42205bb44c46ac563475dca6"
 
 [[package]]
 name = "clientele"
-version = "0.3.7"
+version = "0.3.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "913c7656cb7d4e83b7a6fa82df487dd9ec755d02f5e964a761eb8dbde77786f2"
+checksum = "07ab70eb434a01fc8bc1787981828ccf36f1e80a1242b915e085e913b4290e66"
 dependencies = [
  "argfile",
  "clap",
