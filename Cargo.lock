@@ -41,7 +41,7 @@ dependencies = [
 
 [[package]]
 name = "asimov-http-module"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "asimov-module",
  "clap",
@@ -405,9 +405,9 @@ checksum = "a8d1add55171497b4705a648c6b583acafb01d58050a51727785f0b2c8e0a2b2"
 
 [[package]]
 name = "gofer"
-version = "0.1.7"
+version = "0.1.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f909d6571c91f4e29936d31eed984af64c98a97f0a2b5201f2f31eae8756ee7d"
+checksum = "fd6761a81efac6a3b56c289383c0e94539ee8ad7441feb682436778019a5bfb0"
 dependencies = [
  "clap",
  "data-url",
