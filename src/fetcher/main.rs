@@ -14,6 +14,9 @@ use std::error::Error;
 struct Options {
     #[clap(flatten)]
     flags: StandardOptions,
+
+    /// The `http:` or `https:` URL to fetch
+    url: String,
 }
 
 fn main() -> Result<SysexitsError, Box<dyn Error>> {
@@ -49,7 +52,9 @@ fn main() -> Result<SysexitsError, Box<dyn Error>> {
         .without_time()
         .init();
 
-    println!("asimov-http-fetcher output"); // TODO
+    let mut output = std::io::stdout().lock();
+    let mut input = asimov_http_module::open(&options.url)?;
+    std::io::copy(&mut input, &mut output)?;
 
-    Ok(EX_UNAVAILABLE)
+    Ok(EX_OK)
 }

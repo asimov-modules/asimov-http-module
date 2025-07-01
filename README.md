@@ -22,7 +22,7 @@ cargo install asimov-http-module
 ## 👉 Examples
 
 ```bash
-asimov-http-fetcher
+asimov-http-fetcher https://asimov.blog/robots.txt
 ```
 
 ## 👨‍💻 Development
