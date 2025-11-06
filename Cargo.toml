@@ -2,7 +2,7 @@
 
 [package]
 name = "asimov-http-module"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["ASIMOV Community"]
 edition = "2024"
 #rust-version = "1.85"
@@ -27,15 +27,15 @@ unstable = []
 [dependencies]
 asimov-module = { version = "25.0.0-dev.13", default-features = false }
 clap = { version = "4.5", default-features = false, features = [
-    "std",
+  "std",
 ], optional = true }
 clientele = { version = "0.3.7", default-features = false, features = [
-    "clap",
-    "std",
+  "clap",
+  "std",
 ], optional = true }
 gofer = { version = "0.1.8", default-features = false, features = [
-    "http",
-    "https",
+  "http",
+  "https",
 ] }
 
 [profile.release]
