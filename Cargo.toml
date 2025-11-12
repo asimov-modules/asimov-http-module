@@ -37,6 +37,7 @@ gofer = { version = "0.1.8", default-features = false, features = [
   "http",
   "https",
 ] }
+know = { git = "https://github.com/know-ontology/know.rs" }
 
 [profile.release]
 opt-level = "z"

@@ -6,7 +6,8 @@ compile_error!("asimov-http-fetcher requires the 'std' feature");
 use asimov_module::SysexitsError::{self, *};
 use clap::Parser;
 use clientele::StandardOptions;
-use std::error::Error;
+use know::traits::ToJsonLd;
+use std::{error::Error, io::Write as _};
 
 /// asimov-http-fetcher
 #[derive(Debug, Parser)]
@@ -15,8 +16,21 @@ struct Options {
     #[clap(flatten)]
     flags: StandardOptions,
 
-    /// The `http:` or `https:` URL to fetch
-    url: String,
+    /// The output format.
+    #[arg(value_name = "FORMAT", short = 'o', long, default_value_t, value_enum)]
+    output: OutputFormat,
+
+    /// The `http:` or `https:` URLs to fetch
+    urls: Vec<String>,
+}
+
+#[derive(Clone, Debug, Default, clap::ValueEnum)]
+enum OutputFormat {
+    #[default]
+    Cli,
+    Jsonl,
+    Jsonld,
+    Json,
 }
 
 fn main() -> Result<SysexitsError, Box<dyn Error>> {
@@ -46,8 +60,27 @@ fn main() -> Result<SysexitsError, Box<dyn Error>> {
     asimov_module::init_tracing_subscriber(&options.flags).expect("failed to initialize logging");
 
     let mut output = std::io::stdout().lock();
-    let mut input = asimov_http_module::open(&options.url)?;
-    std::io::copy(&mut input, &mut output)?;
+
+    for url in options.urls {
+        let mut input = asimov_http_module::open(&url)?;
+
+        match options.output {
+            OutputFormat::Jsonl | OutputFormat::Jsonld | OutputFormat::Json => {
+                let mut data = Vec::new();
+                input.read_to_end(&mut data)?;
+                let file = know::classes::File {
+                    id: Some(url),
+                    name: None,
+                    size: data.len() as _,
+                    data,
+                };
+                writeln!(&mut output, "{}", file.to_jsonld()?)?;
+            },
+            OutputFormat::Cli => {
+                std::io::copy(&mut input, &mut output)?;
+            },
+        }
+    }
 
     Ok(EX_OK)
 }
